@@ -1,5 +1,6 @@
 import time
 import requests
+import random
 
 def CountrySearch():
     UserInput = input("Country: ").strip()
@@ -49,30 +50,67 @@ def CountrySearch():
         print("Error: Could not fetch the data.")
 
 def TripPlan():
-
     print("Plan your trip")
     time.sleep(0.75)
+ 
     CustomerName = input("What is your name?: ")
-    AmountOfCountries = input("How many countries will you visit")
-
+    AmountOfCountries = int(input("How many countries will you visit: "))
+ 
+    TotalDays = 0
+ 
+    for country in range(AmountOfCountries):
+        Country = input("Enter a country: ")
+        Days = int(input("How many days will you stay there?: "))
+        TotalDays = TotalDays + Days
+ 
+    TravelDate = input("Estimated travel date: ")
+    Notes = input("Notes or special requirements: ")
+ 
+    DailyAccommodationCost = random.randint(100,200)
+    TransportationCost = random.randint(250,500)
+    AgencyFee = random.randint(150,300)
+ 
+    AccommodationCost = TotalDays * DailyAccommodationCost
+    TotalCost = AccommodationCost + TransportationCost + AgencyFee
+ 
+    print("Trip Summary")
+    print("--------------------------")
+    print("Client's name:", CustomerName)
+    print("--------------------------")
+    print("Countries:", AmountOfCountries)
+    print("--------------------------")
+    print("Total days:", TotalDays)
+    print("--------------------------")
+    print("Travel date:", TravelDate)
+    print("--------------------------")
+    print("Notes:", Notes)
+ 
+    print("Total estimated trip cost, Enjoy:", TotalCost)
+ 
 def Options():
-    print("Welcome to the teen T.I.T.A.N™ cruise agency")
-    time.sleep(0.75)
-    print("What would you like to do?")
-    time.sleep(0.75)
-    print("1. Search for a country, recieve its crucial information")
-    print("2. Plan your trip today")
-
-    option = input("What would you like to do")
-
-    if option == "1":
-        CountrySearch()
-
-    if option == "2":
-        TripPlan()
-
-    else:
-        print("Invalid option")
-
+    while True:
+ 
+        print("Welcome to the teen T.I.T.A.N™ Travel agency")
+        time.sleep(0.75)
+        print("What would you like to do?")
+        time.sleep(0.75)
+        print("1. Search for a country, recieve its crucial information")
+        print("2. Plan your trip today")
+        print("3. Exit")
+ 
+        option = input("What would you like to do: ")
+ 
+        if option == "1":
+            CountrySearch()
+ 
+        elif option == "2":
+            TripPlan()
+ 
+        elif option == "3":
+            print("Goodbye.")
+            break
+ 
+        else:
+            print("Invalid option")
+ 
 Options()
-
