@@ -2,11 +2,6 @@ import time
 import requests
 
 def CountrySearch():
-    
-    print("Welcome to THE travel agency")
-    time.sleep(0.5)
-    print("What would you like to do?")
-    time.sleep(0.5)
     UserInput = input("Country: ").strip()
 
     url = f"https://restcountries.com/v3.1/name/{UserInput}"
@@ -25,8 +20,6 @@ def CountrySearch():
         TimeZone = data["timezones"]
         CountryCode = data["cca2"]
         Location = data["capitalInfo"]["latlng"]
-        Weather = data[""]
-        CurrentLocalTime = data[""]
         LandStatus = data["landlocked"]
         borderingCountries = data["borders"]
 
@@ -48,17 +41,38 @@ def CountrySearch():
         print("--------------------------")
         print(f"Coordinates: {Location}")
         print("--------------------------")
-        print(f"Weather: {Weather}")
+        print(f"Landlocked country?: {LandStatus}")
         print("--------------------------")
-        print(f"Current local time: {CurrentLocalTime}")
-        print("--------------------------")
-        print(f"Current local time: {LandStatus}")
-        print("--------------------------")
-        print(f"Current local time: {borderingCountries}")
+        print(f"Bordering countries: {borderingCountries}")
 
     else:
         print("Error: Could not fetch the data.")
 
-CountrySearch()
-    
+def TripPlan():
+
+    print("Plan your trip")
+    time.sleep(0.75)
+    CustomerName = input("What is your name?: ")
+    AmountOfCountries = input("How many countries will you visit")
+
+def Options():
+    print("Welcome to the teen T.I.T.A.N™ cruise agency")
+    time.sleep(0.75)
+    print("What would you like to do?")
+    time.sleep(0.75)
+    print("1. Search for a country, recieve its crucial information")
+    print("2. Plan your trip today")
+
+    option = input("What would you like to do")
+
+    if option == "1":
+        CountrySearch()
+
+    if option == "2":
+        TripPlan()
+
+    else:
+        print("Invalid option")
+
+Options()
 
