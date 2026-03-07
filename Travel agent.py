@@ -1,53 +1,64 @@
-import requests
 import time
+import requests
 
-def getInfo():
-    url = "https://www.apicountries.com/countries"
-    response = requests.get(url)
+def CountrySearch():
     
-    if response.status_code == 200:
-        allCountries = response.json()  
-        
-        print("Welcome to THE travel agency")
-        time.sleep(0.5)
-        print("Enter the country's name to receive its crucial information")
-        time.sleep(0.5)
-        UserInput = input("Country: ").strip().lower()
-        
-        FoundCountry = None
-        for country in allCountries:
-            countryName = country.get("name", "").lower()
-            if UserInput in countryName.lower() or countryName in UserInput.lower():
-                FoundCountry = country
-                break
-        
-        if FoundCountry:
-            OfficialCountryName = FoundCountry.get("name", "N/A")
-            CapitalCity = FoundCountry.get("capital", "N/A")
-            region = FoundCountry.get("region", "N/A")
-            subregion = FoundCountry.get("subregion", "N/A")
-            RegionSubRegion = f"{region} / {subregion}"
-            Population = FoundCountry.get("population", "N/A")
-            Currency = FoundCountry.get("currency", "N/A")
-            Languages = FoundCountry.get("language", "N/A")
-            TimeZone = FoundCountry.get("timezone", "N/A")
-            
-            print(f"\nThe official country name: {OfficialCountryName}")
-            print("--------------------------")
-            print(f"Capital city: {CapitalCity}")
-            print("--------------------------")
-            print(f"Region and Sub Region: {RegionSubRegion}")
-            print("--------------------------")
-            print(f"Population: {Population}")
-            print("--------------------------")
-            print(f"Currency: {Currency}")
-            print("--------------------------")
-            print(f"Languages: {Languages}")
-            print("--------------------------")
-            print(f"Timezone: {TimeZone}")
-        else:
-            print(f"Country '{UserInput}' not found!")
-    else:
-        print(f"Error: Could not fetch data. Status code: {response.status_code}")
+    print("Welcome to THE travel agency")
+    time.sleep(0.5)
+    print("What would you like to do?")
+    time.sleep(0.5)
+    UserInput = input("Country: ").strip()
 
-getInfo()
+    url = f"https://restcountries.com/v3.1/name/{UserInput}"
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        data = response.json()[0]
+
+        OfficialCountryName = data["name"]["official"]
+        CapitalCity = data["capital"]
+        region = data["region"]
+        subregion = data["subregion"]
+        Population = data["population"]
+        Currency = data["currencies"]
+        Languages = data["languages"]
+        TimeZone = data["timezones"]
+        CountryCode = data["cca2"]
+        Location = data["capitalInfo"]["latlng"]
+        Weather = data[""]
+        CurrentLocalTime = data[""]
+        LandStatus = data["landlocked"]
+        borderingCountries = data["borders"]
+
+        print(f"\nThe official country name: {OfficialCountryName}")
+        print("--------------------------")
+        print(f"Capital city: {CapitalCity}")
+        print("--------------------------")
+        print(f"Region and Sub Region: {region} / {subregion}")
+        print("--------------------------")
+        print(f"Population: {Population}")
+        print("--------------------------")
+        print(f"Currency: {Currency}")
+        print("--------------------------")
+        print(f"Languages: {Languages}")
+        print("--------------------------")
+        print(f"Timezone: {TimeZone}")
+        print("--------------------------")
+        print(f"Country code: {CountryCode}")
+        print("--------------------------")
+        print(f"Coordinates: {Location}")
+        print("--------------------------")
+        print(f"Weather: {Weather}")
+        print("--------------------------")
+        print(f"Current local time: {CurrentLocalTime}")
+        print("--------------------------")
+        print(f"Current local time: {LandStatus}")
+        print("--------------------------")
+        print(f"Current local time: {borderingCountries}")
+
+    else:
+        print("Error: Could not fetch the data.")
+
+CountrySearch()
+    
+
