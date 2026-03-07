@@ -49,18 +49,18 @@ def CountrySearch():
         print("Error: Could not fetch the data.")
  
 def TripPlan():
- 
     print("Plan your trip")
     time.sleep(0.75)
 
     CustomerName = input("What is your name?: ")
-    AmountOfCountries = input("How many countries will you visit: ")
+    AmountOfCountries = int(input("How many countries will you visit: "))
 
-    Country1 = input("Enter first country: ")
-    Days1 = int(input("How many days will you stay there?: "))
+    TotalDays = 0
 
-    Country2 = input("Enter second country: ")
-    Days2 = int(input("How many days will you stay there?: "))
+    for country in range(AmountOfCountries):
+        Country = input("Enter a country: ")
+        Days = int(input("How many days will you stay there?: "))
+        TotalDays = TotalDays + Days
 
     TravelDate = input("Estimated travel date: ")
     Notes = input("Notes or special requirements: ")
@@ -69,23 +69,16 @@ def TripPlan():
     TransportationCost = 250
     AgencyFee = 150
 
-    TotalDays = Days1 + Days2
     AccommodationCost = TotalDays * DailyAccommodationCost
     TotalCost = AccommodationCost + TransportationCost + AgencyFee
 
     print("Trip Summary")
-    print("--------------------------")
-    print("Client name:", CustomerName)
-    print("Countries:", Country1, "and", Country2)
-    print("Days:", Days1, "and", Days2)
+    print("Client:", CustomerName)
+    print("Countries visited:", AmountOfCountries)
+    print("Total days:", TotalDays)
     print("Travel date:", TravelDate)
     print("Notes:", Notes)
 
-    print("Cost Estimation")
-    print("--------------------------")
-    print("Accommodation cost:", AccommodationCost)
-    print("Transportation cost:", TransportationCost)
-    print("Agency fee:", AgencyFee)
     print("Total estimated trip cost:", TotalCost)
  
 def Options():
