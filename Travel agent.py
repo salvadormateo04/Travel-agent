@@ -1,15 +1,15 @@
 import time
 import requests
-
+ 
 def CountrySearch():
     UserInput = input("Country: ").strip()
-
+ 
     url = f"https://restcountries.com/v3.1/name/{UserInput}"
     response = requests.get(url)
-
+ 
     if response.status_code == 200:
         data = response.json()[0]
-
+ 
         OfficialCountryName = data["name"]["official"]
         CapitalCity = data["capital"]
         region = data["region"]
@@ -22,8 +22,8 @@ def CountrySearch():
         Location = data["capitalInfo"]["latlng"]
         LandStatus = data["landlocked"]
         borderingCountries = data["borders"]
-
-        print(f"\nThe official country name: {OfficialCountryName}")
+ 
+        print(f"The official country name: {OfficialCountryName}")
         print("--------------------------")
         print(f"Capital city: {CapitalCity}")
         print("--------------------------")
@@ -44,17 +44,43 @@ def CountrySearch():
         print(f"Landlocked country?: {LandStatus}")
         print("--------------------------")
         print(f"Bordering countries: {borderingCountries}")
-
+ 
     else:
         print("Error: Could not fetch the data.")
-
+ 
 def TripPlan():
-
     print("Plan your trip")
     time.sleep(0.75)
-    CustomerName = input("What is your name?: ")
-    AmountOfCountries = input("How many countries will you visit")
 
+    CustomerName = input("What is your name?: ")
+    AmountOfCountries = int(input("How many countries will you visit: "))
+
+    TotalDays = 0
+
+    for country in range(AmountOfCountries):
+        Country = input("Enter a country: ")
+        Days = int(input("How many days will you stay there?: "))
+        TotalDays = TotalDays + Days
+
+    TravelDate = input("Estimated travel date: ")
+    Notes = input("Notes or special requirements: ")
+
+    DailyAccommodationCost = 100
+    TransportationCost = 250
+    AgencyFee = 150
+
+    AccommodationCost = TotalDays * DailyAccommodationCost
+    TotalCost = AccommodationCost + TransportationCost + AgencyFee
+
+    print("Trip Summary")
+    print("Client:", CustomerName)
+    print("Countries visited:", AmountOfCountries)
+    print("Total days:", TotalDays)
+    print("Travel date:", TravelDate)
+    print("Notes:", Notes)
+
+    print("Total estimated trip cost:", TotalCost)
+ 
 def Options():
     print("Welcome to the teen T.I.T.A.N™ cruise agency")
     time.sleep(0.75)
@@ -62,17 +88,16 @@ def Options():
     time.sleep(0.75)
     print("1. Search for a country, recieve its crucial information")
     print("2. Plan your trip today")
-
+ 
     option = input("What would you like to do")
-
+ 
     if option == "1":
         CountrySearch()
-
+ 
     if option == "2":
         TripPlan()
-
+ 
     else:
         print("Invalid option")
-
+ 
 Options()
-
