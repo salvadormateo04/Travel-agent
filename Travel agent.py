@@ -11,7 +11,7 @@ def CountrySearch():
         data = response.json()[0]
  
         OfficialCountryName = data["name"]["official"]
-        CapitalCity = data["capital"]
+        CapitalCity = data.get("capital", ["Unknown"])[0]
         region = data["region"]
         subregion = data["subregion"]
         Population = data["population"]
@@ -21,29 +21,29 @@ def CountrySearch():
         CountryCode = data["cca2"]
         Location = data["capitalInfo"]["latlng"]
         LandStatus = data["landlocked"]
-        borderingCountries = data["borders"]
+        borderingCountries = data.get("borders", [])
  
-        print(f"The official country name: {OfficialCountryName}")
+        print("The official country name:", OfficialCountryName)
         print("--------------------------")
-        print(f"Capital city: {CapitalCity}")
+        print("Capital city:", CapitalCity)
         print("--------------------------")
-        print(f"Region and Sub Region: {region} / {subregion}")
+        print("Region and Sub Region:", region, "/", subregion)
         print("--------------------------")
-        print(f"Population: {Population}")
+        print("Population:", Population)
         print("--------------------------")
-        print(f"Currency: {Currency}")
+        print("Currency:", Currency)
         print("--------------------------")
-        print(f"Languages: {Languages}")
+        print("Languages:", Languages)
         print("--------------------------")
-        print(f"Timezone: {TimeZone}")
+        print("Timezone:", TimeZone)
         print("--------------------------")
-        print(f"Country code: {CountryCode}")
+        print("Country code:", CountryCode)
         print("--------------------------")
-        print(f"Coordinates: {Location}")
+        print("Coordinates:", Location)
         print("--------------------------")
-        print(f"Landlocked country?: {LandStatus}")
+        print("Landlocked country?:", LandStatus)
         print("--------------------------")
-        print(f"Bordering countries: {borderingCountries}")
+        print("Bordering countries:", borderingCountries)
  
     else:
         print("Error: Could not fetch the data.")
@@ -82,22 +82,29 @@ def TripPlan():
     print("Total estimated trip cost:", TotalCost)
  
 def Options():
-    print("Welcome to the teen T.I.T.A.N™ cruise agency")
-    time.sleep(0.75)
-    print("What would you like to do?")
-    time.sleep(0.75)
-    print("1. Search for a country, recieve its crucial information")
-    print("2. Plan your trip today")
- 
-    option = input("What would you like to do")
- 
-    if option == "1":
-        CountrySearch()
- 
-    if option == "2":
-        TripPlan()
- 
-    else:
-        print("Invalid option")
+    while True:
+
+        print("Welcome to the teen T.I.T.A.N™ cruise agency")
+        time.sleep(0.75)
+        print("What would you like to do?")
+        time.sleep(0.75)
+        print("1. Search for a country, recieve its crucial information")
+        print("2. Plan your trip today")
+        print("3. Exit")
+
+        option = input("What would you like to do: ")
+
+        if option == "1":
+            CountrySearch()
+
+        elif option == "2":
+            TripPlan()
+
+        elif option == "3":
+            print("Goodbye.")
+            break
+
+        else:
+            print("Invalid option")
  
 Options()
