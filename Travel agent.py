@@ -65,7 +65,7 @@ def TripPlan():
         TotalDays = TotalDays + Days
  
     print("--------------------------")
-    TravelDate = input("Estimated travel date: ")
+    TravelDate = input("Estimated travel date in day/month/year: ")
     print("--------------------------")
     Notes = input("Notes or special requirements: ")
     print("--------------------------")
@@ -109,6 +109,7 @@ def Options():
         print("--------------------------")
         print("3. Exit")
         print("--------------------------")
+
  
         option = input("What would you like to do: ")
         print("--------------------------")
@@ -118,7 +119,7 @@ def Options():
  
         elif option == "2":
             TripPlan()
- 
+
         elif option == "3":
             print("Goodbye and thank you for using T.I.T.A.N travel agency.")
             break
