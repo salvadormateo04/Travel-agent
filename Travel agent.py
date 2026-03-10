@@ -26,25 +26,26 @@ def CountrySearch():
 
         print(f"\nThe official country name: {OfficialCountryName}")
         print("--------------------------")
-        print(f"Capital city: {CapitalCity}")
+        print(f"The capital city: {CapitalCity}")
         print("--------------------------")
-        print(f"Region and Sub Region: {region} / {subregion}")
+        print(f"The region and Sub Region: {region} / {subregion}")
         print("--------------------------")
-        print(f"Population: {Population}")
+        print(f"The Population: {Population}")
         print("--------------------------")
-        print(f"Currency: {Currency}")
+        print(f"The Currency: {Currency}")
         print("--------------------------")
-        print(f"Languages: {Languages}")
+        print(f"The Languages: {Languages}")
         print("--------------------------")
-        print(f"Timezone: {TimeZone}")
+        print(f"The Timezone: {TimeZone}")
         print("--------------------------")
-        print(f"Country code: {CountryCode}")
+        print(f"The Country code: {CountryCode}")
         print("--------------------------")
-        print(f"Coordinates: {Location}")
+        print(f"The Coordinates: {Location}")
         print("--------------------------")
-        print(f"Landlocked country?: {LandStatus}")
+        print(f"Is it a Landlocked country?: {LandStatus}")
         print("--------------------------")
         print(f"Bordering countries: {borderingCountries}")
+        print("--------------------------")
 
     else:
         print("Error: Could not fetch the data.")
@@ -63,8 +64,11 @@ def TripPlan():
         Days = int(input("How many days will you stay there?: "))
         TotalDays = TotalDays + Days
  
+    print("--------------------------")
     TravelDate = input("Estimated travel date: ")
+    print("--------------------------")
     Notes = input("Notes or special requirements: ")
+    print("--------------------------")
  
     DailyAccommodationCost = random.randint(100,200)
     TransportationCost = random.randint(250,500)
@@ -73,6 +77,7 @@ def TripPlan():
     AccommodationCost = TotalDays * DailyAccommodationCost
     TotalCost = AccommodationCost + TransportationCost + AgencyFee
  
+    print("--------------------------")
     print("Trip Summary")
     print("--------------------------")
     print("Client's name:", CustomerName)
@@ -84,21 +89,29 @@ def TripPlan():
     print("Travel date:", TravelDate)
     print("--------------------------")
     print("Notes:", Notes)
- 
-    print("Total estimated trip cost, Enjoy:", TotalCost)
+    print("--------------------------")
+    print("Total estimated trip cost in dollars, Enjoy:", TotalCost)
+    print("--------------------------")
  
 def Options():
     while True:
- 
-        print("Welcome to the teen T.I.T.A.N™ Travel agency")
+        
+        print("--------------------------")
+        print("Welcome to the T.I.T.A.N™ Travel agency")
         time.sleep(0.75)
+        print("--------------------------")
         print("What would you like to do?")
+        print("--------------------------")
         time.sleep(0.75)
         print("1. Search for a country, recieve its crucial information")
+        print("--------------------------")
         print("2. Plan your trip today")
+        print("--------------------------")
         print("3. Exit")
+        print("--------------------------")
  
         option = input("What would you like to do: ")
+        print("--------------------------")
  
         if option == "1":
             CountrySearch()
@@ -107,7 +120,7 @@ def Options():
             TripPlan()
  
         elif option == "3":
-            print("Goodbye.")
+            print("Goodbye and thank you for using T.I.T.A.N travel agency.")
             break
  
         else:
